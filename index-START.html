@@ -106,11 +106,34 @@
 
 <script>
 //Listen to every single checkbox
-const checkboxes = document.querySelectorAll(.inbox input[type="checkbox"]);
+const checkboxes = document.querySelectorAll(`.inbox input[type="checkbox"]`);
 console.log(checkboxes);
 
-//When user clicks icon listen for shift click
-//Check off items between two events
+//Create variable to hold last checked item
+let lastChecked;
+
+//Check if they have the shift key down AND have it checked
+function handleCheck(e){
+  if(e.shiftKey && this.checked){
+    //Puttin in werk. loop over every single checkbox
+    checkboxes.forEach(checkbox => {
+      console.log(checkbox
+      if(checkbox === this || checkbox === lastChecked  ){
+        inBetween = !inBetween;
+        console.log('Starting to check inbetween!');
+      }
+
+      if(inBetween){
+        checkbox.checked = true; 
+      }
+    });
+  }
+  //Check if they had the shift key down
+  lastChecked = this;
+}
+//Take checkboxes and loop over each one
+checkboxes.forEach(checkbox => checkbox.addEventListener('click', handleCheck));
+
 </script>
 </body>
 </html>
